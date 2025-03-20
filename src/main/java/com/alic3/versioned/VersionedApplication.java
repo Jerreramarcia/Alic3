@@ -10,4 +10,4 @@ public class VersionedApplication {
 		SpringApplication.run(VersionedApplication.class, args);
 	}
 
-}
+
