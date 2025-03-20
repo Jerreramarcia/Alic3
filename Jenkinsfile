@@ -1,18 +1,12 @@
-pipeline {
-    agent any  // O el agente que prefieras
+Jenkinsfile (Declarative Pipeline)
 
+/* Requires the Docker Pipeline plugin */
+pipeline {
+    agent { docker { image 'maven:3.9.9-eclipse-temurin-21-alpine' } }
     stages {
-        stage('Checkout') {
+        stage('build') {
             steps {
-                // Obtiene el código desde el repositorio
-                checkout scm
-            }
-        }
-        stage('Build') {
-            steps {
-                // Ejecuta Maven en la terminal (sh)
-                sh 'mvn clean install'
+                sh 'mvn --version'
             }
         }
     }
-}
