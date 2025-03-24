@@ -8,6 +8,7 @@ public class VersionedApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VersionedApplication.class, args);
+		//tc test
 	}
 
 }
