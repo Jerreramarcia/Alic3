@@ -8,7 +8,6 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDTO {
     private int id;
-    private String ean = "";
     private String display_name;
     private String thumbnail;
 
