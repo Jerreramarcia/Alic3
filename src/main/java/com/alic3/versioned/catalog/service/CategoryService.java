@@ -51,6 +51,7 @@ public class CategoryService {
 
                                 product.setId(productDTO.getId());
                                 product.setThumbnail(productDTO.getThumbnail());
+                                product.setUnitPrice(productDTO.getUnitPrice());
                                 product.setEan(productDTO.getEan());
                                 product.setDisplay_name(productDTO.getDisplay_name());
 

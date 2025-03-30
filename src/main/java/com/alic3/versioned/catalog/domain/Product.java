@@ -15,6 +15,7 @@ public class Product {
     private String ean = "";
     private String display_name;
     private String thumbnail;
+    private double unitPrice;
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,8 +22,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DataLoader implements CommandLineRunner {
 
 
+    @Value("${dataloader.enabled:true}") // true por defecto si no está definida
+    private boolean enabled;
+
     private final SubCategoryService subCategoryService;
     private final CategoryService categoryService;
+
 
     private final WebClient webClient = WebClient.builder()
             .baseUrl("https://tienda.mercadona.es")
@@ -31,8 +36,10 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("Fetching categories from Mercadona...");
 
+        if (!enabled) return;
+
+        System.out.println("Fetching categories from Mercadona...");
         JsonNode root = webClient.get()
                 .uri("/api/categories/")
                 .retrieve()
