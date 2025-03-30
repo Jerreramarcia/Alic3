@@ -1,7 +1,7 @@
-package com.alic3.versioned.Catalog.Category.dto;
+package com.alic3.versioned.catalog.dto;
 
-import com.alic3.versioned.Catalog.SubCategory.dto.SubCategoryDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -11,5 +11,7 @@ import java.util.List;
 public class CategoryDTO {
     private Long id;
     private String name;
-    private List<SubCategoryDTO> categories;
+
+    @JsonProperty("categories")
+    private List<SubCategoryDTO> subCategories;
 }

@@ -1,4 +1,4 @@
-package com.alic3.versioned.Catalog.Product.dto;
+package com.alic3.versioned.catalog.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,7 +7,9 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDTO {
-    private int id;
+    private Long id;
+    @JsonIgnoreProperties
+    private String ean = "";
     private String display_name;
     private String thumbnail;
 

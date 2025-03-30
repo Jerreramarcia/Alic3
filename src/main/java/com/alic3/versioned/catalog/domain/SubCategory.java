@@ -1,8 +1,10 @@
-package com.alic3.versioned.Catalog.SubCategory;
+package com.alic3.versioned.catalog.domain;
 
-import com.alic3.versioned.Catalog.Category.Category;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "subcategories")
@@ -16,4 +18,7 @@ public class SubCategory {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
+    List<Product> products = new ArrayList<>();
 }

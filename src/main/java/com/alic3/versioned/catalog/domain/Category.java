@@ -1,6 +1,5 @@
-package com.alic3.versioned.Catalog.Category;
+package com.alic3.versioned.catalog.domain;
 
-import com.alic3.versioned.Catalog.SubCategory.SubCategory;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,7 +16,7 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     List<SubCategory> subCategories = new ArrayList<>();
 
 }
