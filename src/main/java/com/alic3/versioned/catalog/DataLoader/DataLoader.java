@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DataLoader implements CommandLineRunner {
 
 
-    @Value("${dataloader.enabled:true}") // true por defecto si no está definida
+    @Value("${dataloader.enabled}") // true por defecto si no está definida
     private boolean enabled;
 
     private final SubCategoryService subCategoryService;

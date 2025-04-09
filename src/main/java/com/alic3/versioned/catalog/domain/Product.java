@@ -16,6 +16,8 @@ public class Product {
     private String display_name;
     private String thumbnail;
     private double unitPrice;
+    private double unitSize;
+    private String sizeFormat;
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")

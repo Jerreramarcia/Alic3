@@ -40,6 +40,8 @@ public class ProductService {
         productDTO.setThumbnail(product.getThumbnail());
         ProductDTO.PriceInstructions priceInstructions = new ProductDTO.PriceInstructions();
         priceInstructions.setUnitPrice(product.getUnitPrice());
+        priceInstructions.setSizeFormat(product.getSizeFormat());
+        priceInstructions.setUnitSize(product.getUnitSize());
         productDTO.setPriceInstructions(priceInstructions);
 
         return productDTO;
