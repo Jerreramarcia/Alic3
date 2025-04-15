@@ -1,9 +1,9 @@
-package com.alic3.versioned.catalog.service;
+package com.alic3.versioned.service;
 
-import com.alic3.versioned.catalog.WebClientHelper;
-import com.alic3.versioned.catalog.domain.Product;
-import com.alic3.versioned.catalog.dto.ProductDTO;
-import com.alic3.versioned.catalog.repository.ProductRepository;
+import com.alic3.versioned.config.WebClientHelper;
+import com.alic3.versioned.model.Product;
+import com.alic3.versioned.dto.ProductDTO;
+import com.alic3.versioned.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,6 +40,8 @@ public class ProductService {
         productDTO.setThumbnail(product.getThumbnail());
         ProductDTO.PriceInstructions priceInstructions = new ProductDTO.PriceInstructions();
         priceInstructions.setUnitPrice(product.getUnitPrice());
+        priceInstructions.setSizeFormat(product.getSizeFormat());
+        priceInstructions.setUnitSize(product.getUnitSize());
         productDTO.setPriceInstructions(priceInstructions);
 
         return productDTO;

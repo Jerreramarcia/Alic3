@@ -1,4 +1,4 @@
-package com.alic3.versioned.catalog.dto;
+package com.alic3.versioned.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,5 +25,9 @@ public class ProductDTO {
     public static class PriceInstructions {
         @JsonProperty("unit_price")
         private double unitPrice;
+        @JsonProperty("unit_size")
+        private double unitSize;
+        @JsonProperty("size_format")
+        private String sizeFormat;
     }
 }

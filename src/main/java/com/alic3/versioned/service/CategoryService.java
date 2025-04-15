@@ -1,10 +1,10 @@
-package com.alic3.versioned.catalog.service;
+package com.alic3.versioned.service;
 
-import com.alic3.versioned.catalog.domain.Category;
-import com.alic3.versioned.catalog.dto.CategoryDTO;
-import com.alic3.versioned.catalog.domain.SubCategory;
-import com.alic3.versioned.catalog.domain.Product;
-import com.alic3.versioned.catalog.repository.CategoryRepository;
+import com.alic3.versioned.model.Category;
+import com.alic3.versioned.dto.CategoryDTO;
+import com.alic3.versioned.model.SubCategory;
+import com.alic3.versioned.model.Product;
+import com.alic3.versioned.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +52,8 @@ public class CategoryService {
                                 product.setId(productDTO.getId());
                                 product.setThumbnail(productDTO.getThumbnail());
                                 product.setUnitPrice(productDTO.getUnitPrice());
+                                product.setSizeFormat(productDTO.getPriceInstructions().getSizeFormat());
+                                product.setUnitSize(productDTO.getPriceInstructions().getUnitSize());
                                 product.setEan(productDTO.getEan());
                                 product.setDisplay_name(productDTO.getDisplay_name());
 

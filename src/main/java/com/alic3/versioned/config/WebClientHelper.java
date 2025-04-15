@@ -1,4 +1,4 @@
-package com.alic3.versioned.catalog;
+package com.alic3.versioned.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
