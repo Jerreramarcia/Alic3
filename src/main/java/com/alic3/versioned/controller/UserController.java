@@ -1,4 +1,4 @@
-package com.alic3.versioned.api.controller;
+package com.alic3.versioned.controller;
 
 
 import com.alic3.versioned.constants.ControllerConstants;

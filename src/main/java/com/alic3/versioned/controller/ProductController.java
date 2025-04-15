@@ -1,7 +1,7 @@
-package com.alic3.versioned.api.controller;
+package com.alic3.versioned.controller;
 
-import com.alic3.versioned.catalog.dto.ProductDTO;
-import com.alic3.versioned.catalog.service.ProductService;
+import com.alic3.versioned.dto.ProductDTO;
+import com.alic3.versioned.service.ProductService;
 import com.alic3.versioned.constants.ControllerConstants;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

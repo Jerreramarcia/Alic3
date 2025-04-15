@@ -1,9 +1,9 @@
-package com.alic3.versioned.catalog.DataLoader;
+package com.alic3.versioned.utils;
 
-import com.alic3.versioned.catalog.service.CategoryService;
-import com.alic3.versioned.catalog.dto.CategoryDTO;
-import com.alic3.versioned.catalog.service.SubCategoryService;
-import com.alic3.versioned.catalog.dto.SubCategoryDTO;
+import com.alic3.versioned.service.CategoryService;
+import com.alic3.versioned.dto.CategoryDTO;
+import com.alic3.versioned.service.SubCategoryService;
+import com.alic3.versioned.dto.SubCategoryDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

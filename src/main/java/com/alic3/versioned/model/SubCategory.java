@@ -1,4 +1,4 @@
-package com.alic3.versioned.catalog.domain;
+package com.alic3.versioned.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

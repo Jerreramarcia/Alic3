@@ -1,4 +1,4 @@
-package com.alic3.versioned.catalog.domain;
+package com.alic3.versioned.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

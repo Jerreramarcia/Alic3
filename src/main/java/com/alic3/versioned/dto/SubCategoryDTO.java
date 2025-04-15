@@ -1,4 +1,4 @@
-package com.alic3.versioned.catalog.dto;
+package com.alic3.versioned.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
