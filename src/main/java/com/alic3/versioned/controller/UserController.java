@@ -2,10 +2,10 @@ package com.alic3.versioned.controller;
 
 
 import com.alic3.versioned.constants.ControllerConstants;
+import com.alic3.versioned.model.User;
+import com.alic3.versioned.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = ControllerConstants.MAPPING_USER)
@@ -14,10 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
+    private final UserService userService;
 
 
 
+//    UserDto getUser(){
+//        return new UserDto(userService.createUser());
+//    }
 
 
+    @GetMapping("/{id}")
+    public User getAllUsers(@PathVariable Long id) {
+        return userService.getUser(id);
+    }
 
+
+    record UserDto(User user) {}
 }
