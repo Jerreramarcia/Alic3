@@ -22,6 +22,13 @@ public class ProductService {
         return webClientHelper.fetchWithRetry("/api/products/" + productId, ProductDTO.class);
     }
 
+
+
+    public Product findProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+
     /**
      * Repository usage
      */
