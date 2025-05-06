@@ -33,4 +33,8 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthResponse(token));
     }
+    @GetMapping("/me")
+    public ResponseEntity<String> me(Authentication authentication) {
+        return ResponseEntity.ok("Logged in as: " + authentication.getName());
+    }
 }
