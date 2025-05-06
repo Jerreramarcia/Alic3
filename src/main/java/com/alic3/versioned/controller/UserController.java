@@ -2,9 +2,12 @@ package com.alic3.versioned.controller;
 
 
 import com.alic3.versioned.constants.ControllerConstants;
+import com.alic3.versioned.dto.User.CreateUserRequest;
 import com.alic3.versioned.model.User;
 import com.alic3.versioned.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,8 +21,15 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public User getAllUsers(@PathVariable Long id) {
-        return userService.getUser(id);
+    public User getUsersById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDto createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
+        return new UserDto(userService.createUser(createUserRequest));
     }
 
 
