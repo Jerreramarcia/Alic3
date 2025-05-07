@@ -1,9 +1,13 @@
 package com.alic3.versioned.controller;
 
+import com.alic3.versioned.dto.User.CreateUserRequest;
 import com.alic3.versioned.jwt.JwtUtil;
 import com.alic3.versioned.jwt.auth.AuthRequest;
 import com.alic3.versioned.jwt.auth.AuthResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alic3.versioned.service.UserService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,15 +15,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin("*")
+@AllArgsConstructor
 public class AuthController {
 
-    @Autowired
     private AuthenticationManager authManager;
 
-    @Autowired
+    UserService userService;
+
     private JwtUtil jwtUtil;
 
     @PostMapping("/login")
@@ -33,8 +40,19 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthResponse(token));
     }
+
     @GetMapping("/me")
-    public ResponseEntity<String> me(Authentication authentication) {
-        return ResponseEntity.ok("Logged in as: " + authentication.getName());
+    public Map<String, Object> me(Authentication authentication) {
+        return Map.of(
+                "username", authentication.getName(),
+                "image", "https://api.dicebear.com/7.x/identicon/svg?seed=" + authentication.getName()
+        );
     }
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserController.UserDto createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
+        return new UserController.UserDto(userService.createUser(createUserRequest));
+    }
+
 }
