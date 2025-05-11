@@ -2,9 +2,11 @@ package com.alic3.versioned.controller;
 
 
 import com.alic3.versioned.dto.UserProductDTO;
+import com.alic3.versioned.security.UserDetailsImpl;
 import com.alic3.versioned.service.UserProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -42,5 +44,9 @@ public class UserProductController {
         return ResponseEntity
                 .created(location)
                 .body(newRelation);
+    }
+    @GetMapping()
+    public List<UserProductDTO> getProductsForAuthenticatedUser(@AuthenticationPrincipal UserDetailsImpl user) {
+        return userProductService.getUserProduct(user.getId());
     }
 }

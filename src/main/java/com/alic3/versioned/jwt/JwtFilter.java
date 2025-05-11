@@ -19,12 +19,13 @@ import java.io.IOException;
 @AllArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    private JwtUtil jwtUtil;
-
-    private UserDetailsService userDetailsService;
+    private final JwtUtil jwtUtil;
+    private final UserDetailsService userDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
             throws ServletException, IOException {
 
         final String authHeader = request.getHeader("Authorization");
@@ -36,12 +37,15 @@ public class JwtFilter extends OncePerRequestFilter {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                if (jwtUtil.isTokenValid(token)) {
+                if (jwtUtil.isTokenValid(token, userDetails)) {
                     UsernamePasswordAuthenticationToken authToken =
-                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails,
+                                    null,
+                                    userDetails.getAuthorities()
+                            );
 
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
             }
@@ -50,4 +54,3 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
-

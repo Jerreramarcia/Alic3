@@ -4,6 +4,7 @@ import com.alic3.versioned.dto.User.CreateUserRequest;
 import com.alic3.versioned.jwt.JwtUtil;
 import com.alic3.versioned.jwt.auth.AuthRequest;
 import com.alic3.versioned.jwt.auth.AuthResponse;
+import com.alic3.versioned.security.UserDetailsImpl;
 import com.alic3.versioned.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,10 +44,11 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public Map<String, Object> me(Authentication authentication) {
+    public Map<String, Object> me(@AuthenticationPrincipal UserDetailsImpl user) {
         return Map.of(
-                "username", authentication.getName(),
-                "image", "https://api.dicebear.com/7.x/identicon/svg?seed=" + authentication.getName()
+                "id", user.getId(),
+                "username", user.getUsername(),
+                "image", "https://api.dicebear.com/7.x/identicon/svg?seed=" + user.getUsername()
         );
     }
 
